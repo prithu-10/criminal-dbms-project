@@ -36,15 +36,19 @@ ORDER BY NumberOfCases DESC;
 
 
 -- =================================================================
--- 4. NESTED QUERY / SUBQUERY
--- (Finds all criminals who are "At Large" and "High" danger)
+-- 4. NESTED QUERY / SUBQUERY (FIXED - This is the better example)
+-- (Finds all criminals who are involved in cases that are still open)
 -- =================================================================
 SELECT FirstName, LastName, NationalID
 FROM Criminal
 WHERE CriminalID IN (
-    SELECT CriminalID
-    FROM Criminal
-    WHERE Status = 'At Large' AND DangerLevel = 'High'
+    SELECT DISTINCT CriminalID
+    FROM CriminalCase
+    WHERE CaseID IN (
+        SELECT CaseID
+        FROM CaseTable
+        WHERE Status = 'Open'
+    )
 );
 
 
@@ -60,7 +64,7 @@ SELECT
     l.City,
     l.Address
 FROM CaseTable ct
-JOIN Location l ON ct.LocationID = l.LocationID
+JOIN Location l ON ct.LocationID = ct.LocationID
 WHERE ct.Status = 'Open' OR ct.Status = 'Under Investigation';
 
 
