@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Criminals Management{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Criminals Management</h1>
+    <a href="{{ url_for('add_criminal') }}" class="btn btn-primary">
+        <i class="fas fa-plus me-1"></i> Add New Criminal
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>National ID</th>
+                <th>Status</th>
+                <th>Danger Level</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for criminal in criminals %}
+            <tr>
+                <td>{{ criminal.criminalid }}</td>
+                <td>{{ criminal.firstname }} {{ criminal.lastname }}</td>
+                <td>{{ criminal.dateofbirth }}</td>
+                <td>{{ criminal.gender }}</td>
+                <td>{{ criminal.nationalid }}</td>
+                <td>
+                    <span class="badge 
+                        {% if criminal.status == 'In Custody' %}bg-success
+                        {% elif criminal.status == 'At Large' %}bg-warning
+                        {% elif criminal.status == 'Released' %}bg-info
+                        {% else %}bg-secondary{% endif %}">
+                        {{ criminal.status }}
+                    </span>
+                </td>
+                <td>
+                    <span class="badge 
+                        {% if criminal.dangerlevel == 'High' %}bg-danger
+                        {% elif criminal.dangerlevel == 'Medium' %}bg-warning
+                        {% else %}bg-info{% endif %}">
+                        {{ criminal.dangerlevel }}
+                    </span>
+                </td>
+                <td class="text-end">
+                    <a href="{{ url_for('edit_criminal', criminal_id=criminal.criminalid) }}" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    
+                    <form action="{{ url_for('delete_criminal', criminal_id=criminal.criminalid) }}" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-outline-danger btn-sm" 
+                                onclick="return confirm('Are you sure you want to delete {{ criminal.firstname }} {{ criminal.lastname }}?')">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="8" class="text-center">No criminals found. Add one to get started!</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

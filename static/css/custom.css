@@ -1,0 +1,517 @@
+/* -----------------------------------------------------------------
+   NEW THEME: "Crimson" (Inspired by your restaurant site)
+   ----------------------------------------------------------------- */
+
+/* --- 1. Root Variables (From your restaurant CSS) --- */
+:root {
+    --primary-color: #516c7c; /* Crimson Red */
+    --secondary-color: #182638; /* Dark Red/Brown */
+    --third-color: #ceb6b6; /* Orange */
+    --white-color: #fff;
+    --text-color: #070505;
+    --black-color: #000;
+    
+   /* New Font Pairing */
+    --primary-font: 'Times New Roman', sans-serif;
+    --secondary-font: 'Times New Roman', sans-serif;
+    
+    /* Dashboard Specific */
+    --bg-light-gray: #f4f4f7;
+    --border-color: #e0e0e0;
+}
+
+/* --- 2. General Body Styling --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: var(--primary-font); /* Roboto */
+    background: var(--bg-light-gray);
+    min-height: 100vh;
+}
+
+/* Use Quicksand for headings */
+h1, h2, h3, h4, h5, h6,
+.header-title h1, .page-title, .sidebar-header, .stat-value, .action-btn,
+.card-header, .page-header .btn {
+    font-family: var(--secondary-font); /* Quicksand */
+}
+
+/* --- 3. Main Header (Top Bar) --- */
+.header {
+    background: var(--secondary-color); /* Dark Red/Brown */
+    color: var(--white-color);
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.header-content {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.logo {
+    background: var(--white-color);
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+.logo svg {
+    width: 40px;
+    height: 40px;
+    fill: var(--secondary-color);
+}
+.header-title h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.header-title p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    color: #f1f1f1;
+}
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.user-info {
+    text-align: right;
+    font-family: var(--primary-font);
+}
+.user-info p:first-child {
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.user-info p:last-child {
+    font-size: 0.85rem;
+    opacity: 0.85;
+}
+.logout-btn {
+    background: var(--primary-color); /* Crimson Red */
+    color: var(--white-color);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: var(--primary-font);
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+}
+.logout-btn:hover {
+    background: #c93a5e; /* Lighter red */
+    transform: translateY(-2px);
+}
+
+/* --- 4. Info Banner --- */
+.info-banner {
+    background: var(--third-color); /* Orange */
+    color: var(--black-color);
+    font-family: var(--primary-font);
+    padding: 0.5rem 0;
+    font-weight: 500;
+}
+.info-banner-content {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #4caf50;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+    margin-right: 0.5rem;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* --- 5. Main Layout (Sidebar + Content) --- */
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+.layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 2rem;
+}
+.sidebar {
+    background: var(--white-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+}
+.sidebar-header {
+    background: #f8f9fa;
+    color: var(--secondary-color);
+    padding: 1.25rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.nav-menu {
+    list-style: none;
+    padding: 1rem;
+}
+.nav-item {
+    margin-bottom: 0.5rem;
+}
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.9rem 1.2rem;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s;
+    font-weight: 600;
+    font-family: var(--secondary-font);
+}
+.nav-link:hover {
+    background: #fdf0f3; /* Light red */
+    color: var(--primary-color);
+}
+.nav-link.active {
+    background: var(--primary-color); /* Crimson Red */
+    color: white;
+    box-shadow: 0 4px 8px rgba(168, 44, 72, 0.3);
+}
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 1.2rem;
+    fill: currentColor;
+}
+
+/* --- 6. Main Content Area --- */
+.main-content {
+    background: var(--white-color);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    min-height: 80vh;
+}
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+.last-updated {
+    color: #666;
+    font-size: 0.9rem;
+    font-family: var(--primary-font);
+}
+.footer {
+    text-align: center;
+    color: #888;
+    padding: 1.5rem 0 0 0;
+    font-size: 0.9rem;
+    font-family: var(--primary-font);
+}
+
+/* --- 7. Login Page --- */
+.login-body {
+    background: var(--bg-light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.login-card {
+    background: var(--white-color);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 450px;
+}
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.login-logo {
+    background: var(--secondary-color);
+    color: var(--white-color);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(67, 18, 29, 0.4);
+}
+.login-logo svg {
+    width: 40px;
+    height: 40px;
+    fill: white;
+}
+.login-header h2 {
+    font-family: var(--secondary-font);
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    font-weight: 700;
+    margin-top: 1rem;
+}
+.login-header p {
+    font-family: var(--primary-font);
+    color: #666;
+    font-size: 1rem;
+}
+.login-card .form-control {
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    font-family: var(--primary-font);
+}
+.login-card .btn-primary {
+    background: var(--primary-color);
+    border: none;
+    padding: 0.9rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: var(--secondary-font);
+    box-shadow: 0 4px 12px rgba(168, 44, 72, 0.3);
+    transition: all 0.3s;
+}
+.login-card .btn-primary:hover {
+    background: #c93a5e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(168, 44, 72, 0.4);
+}
+
+/* --- 8. Table & Form Styles --- */
+.card-header {
+    background: #f8f9fa;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    padding: 1.25rem 1.5rem;
+}
+.card-body {
+    padding: 1.5rem;
+}
+.page-header .btn {
+    background: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    box-shadow: 0 4px 8px rgba(168, 44, 72, 0.2);
+    transition: all 0.3s;
+}
+.page-header .btn:hover {
+    background: #c93a5e;
+    transform: translateY(-2px);
+}
+.table-responsive {
+    margin-top: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+}
+.table {
+    margin-bottom: 0;
+    font-family: var(--primary-font);
+}
+.table thead th {
+    background: #f8f9fa;
+    color: var(--secondary-color);
+    font-weight: 700;
+    font-family: var(--secondary-font);
+    border-bottom: 2px solid var(--border-color);
+}
+.table .btn {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: var(--primary-font);
+}
+.table .btn-warning { /* Edit */
+    background: var(--third-color);
+    border-color: var(--third-color);
+    color: var(--black-color);
+}
+.table .btn-warning:hover {
+    background: #f07456;
+    border-color: #f07456;
+    color: var(--black-color);
+}
+.table .btn-danger { /* Delete */
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+/* --- 9. Dashboard-specific (from other file) --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+.stat-card {
+    background: var(--white-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid;
+    transition: all 0.3s;
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+.stat-card.blue { border-left-color: #007bff; }
+.stat-card.orange { border-left-color: var(--third-color); }
+.stat-card.green { border-left-color: #28a745; }
+.stat-card.purple { border-left-color: var(--primary-color); }
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: var(--primary-font);
+}
+.stat-icon {
+    width: 32px;
+    height: 32px;
+    opacity: 0.8;
+}
+.stat-value {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+.stat-trend {
+    font-size: 0.85rem;
+    color: #666;
+    font-family: var(--primary-font);
+}
+.section {
+    margin-bottom: 2rem;
+}
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.section-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+.action-btn {
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: var(--white-color);
+}
+.action-btn.add {
+    background: #28a745;
+}
+.action-btn.search {
+    background: #007bff;
+}
+.action-btn.report {
+    background: var(--third-color);
+    color: var(--black-color);
+}
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+.activities-list {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+.activity-item {
+    background: var(--white-color);
+    padding: 1.25rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.activity-item:last-child {
+    margin-bottom: 0;
+}
+.activity-action {
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    font-family: var(--secondary-font);
+}
+.activity-details {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+.activity-time {
+    color: #999;
+    font-size: 0.85rem;
+}

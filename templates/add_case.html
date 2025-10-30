@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Add Case{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Add New Case</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="case_title" class="form-label">Case Title</label>
+                        <input type="text" class="form-control" id="case_title" name="case_title" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="date_reported" class="form-label">Date Reported</label>
+                            <input type="date" class="form-control" id="date_reported" name="date_reported" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="investigating_officer" class="form-label">Investigating Officer</label>
+                            <input type="text" class="form-control" id="investigating_officer" name="investigating_officer" value="{{ session.officer_name|default('System') }}">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="status" class="form-label">Status</label>
+                            <select class="form-select" id="status" name="status" required>
+                                <option value="Open">Open</option>
+                                <option value="Under Investigation">Under Investigation</option>
+                                <option value="Closed - Solved">Closed - Solved</option>
+                                <option value="Closed - Unsolved">Closed - Unsolved</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="priority" class="form-label">Priority</label>
+                            <select class="form-select" id="priority" name="priority" required>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                                <option value="Urgent">Urgent</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="location_id" class="form-label">Location</label>
+                        <select class="form-select" id="location_id" name="location_id" required>
+                            <option value="">Select a location</option>
+                            {% for location in locations %}
+                                <option value="{{ location.locationid }}">{{ location.city }} - {{ location.address }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Add Case</button>
+                    <a href="{{ url_for('cases') }}" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h2 class="page-title">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 36px; height: 36px;">
+                <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+            </svg>
+            Dashboard
+        </h2>
+        <div class="last-updated">Last updated: {{ now.strftime('%Y-%m-%d %H:%M') }}</div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card blue">
+            <div class="stat-header">
+                <span class="stat-label">Total Criminals</span>
+                <svg class="stat-icon" viewBox="0 0 24 24" fill="#2196F3"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            </div>
+            <div class="stat-value">{{ total_criminals }}</div>
+            <div class="stat-trend">Total records</div>
+        </div>
+
+        <div class="stat-card orange">
+            <div class="stat-header">
+                <span class="stat-label">Open Cases</span>
+                <svg class="stat-icon" viewBox="0 0 24 24" fill="#FF9800"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
+            </div>
+            <div class="stat-value">{{ open_cases }}</div>
+            <div class="stat-trend">Active investigations</div>
+        </div>
+
+        <div class="stat-card green">
+            <div class="stat-header">
+                <span class="stat-label">Closed Cases</span>
+                <svg class="stat-icon" viewBox="0 0 24 24" fill="#4CAF50"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-1 12H5c-.55 0-1-.45-1-1V9c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1z"/></svg>
+            </div>
+            <div class="stat-value">{{ closed_cases }}</div>
+            <div class="stat-trend">Resolved</div>
+        </div>
+
+        <div class="stat-card purple">
+            <div class="stat-header">
+                <span class="stat-label">Crime Types</span>
+                <svg class="stat-icon" viewBox="0 0 24 24" fill="#9C27B0"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            </div>
+            <div class="stat-value">{{ crime_types }}</div>
+            <div class="stat-trend">Categories tracked</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3 class="section-title">
+            <svg class="section-icon" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+            Quick Actions
+        </h3>
+        <div class="quick-actions">
+            <a href="{{ url_for('add_criminal') }}" class="action-btn add">
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                Add Criminal
+            </a>
+            <a href="{{ url_for('add_case') }}" class="action-btn add">
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                Add Case
+            </a>
+            <a href="{{ url_for('search') }}" class="action-btn search">
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                Search
+            </a>
+            <a href="{{ url_for('reports') }}" class="action-btn report">
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                Reports
+            </a>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3 class="section-title">
+            <svg class="section-icon" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+            Recent Activities
+        </h3>
+        <div class="activities-list">
+            {% for activity in recent_activities %}
+            <div class="activity-item">
+                <div class="activity-action">{{ activity.role }} - {{ activity.firstname }} {{ activity.lastname }}</div>
+                <div class="activity-details">Case: {{ activity.casetitle }}</div>
+                <div class="activity-time">{{ activity.dateassociated.strftime('%Y-%m-%d') }}</div>
+            </div>
+            {% else %}
+            <div class="activity-item">
+                <div class="activity-details">No recent activities found.</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
